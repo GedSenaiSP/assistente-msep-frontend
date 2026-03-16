@@ -18,6 +18,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: 'Create .env file'
+        run: |
+          echo "NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}" > .env
+          echo "NEXT_PUBLIC_URL=${{ secrets.NEXT_PUBLIC_URL }}" >> .env
+          echo "NEXT_PUBLIC_BUG_REPORT_FORM_URL=${{ secrets.NEXT_PUBLIC_BUG_REPORT_FORM_URL }}" >> .env
+          echo "NEXT_PUBLIC_DEBUG_AUTH=${{ secrets.NEXT_PUBLIC_DEBUG_AUTH }}" >> .env
+          echo "NEXT_PUBLIC_FEEDBACK_FORM_URL=${{ secrets.NEXT_PUBLIC_FEEDBACK_FORM_URL }}" >> .env
+          echo "NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }}" >> .env
+          echo "NODE_ENV=production" >> .env
+
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
