@@ -49,14 +49,19 @@ jobs:
       
       - name: Prepare Standalone Artifact
         run: |
-          # O standalone precisa das pastas public e static manualmente
+          # 1. O Next standalone precisa que a pasta 'public' esteja na raiz do deploy
           cp -r public .next/standalone/public
+          
+          # 2. O Next standalone precisa da pasta 'static' dentro de '.next/static'
+          # CRIAMOS a pasta .next dentro da standalone primeiro
+          mkdir -p .next/standalone/.next
           cp -r .next/static .next/standalone/.next/static
-
-      - name: Upload artifact for deployment job
+          
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: node-app
+          # Enviamos o CONTEÚDO da pasta standalone
           path: .next/standalone
 
   deploy:
