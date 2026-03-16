@@ -19,14 +19,23 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: 'Create .env file'
+        shell: bash
         run: |
-          echo "NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}" > .env
-          echo "NEXT_PUBLIC_URL=${{ secrets.NEXT_PUBLIC_URL }}" >> .env
-          echo "NEXT_PUBLIC_BUG_REPORT_FORM_URL=${{ secrets.NEXT_PUBLIC_BUG_REPORT_FORM_URL }}" >> .env
-          echo "NEXT_PUBLIC_DEBUG_AUTH=${{ secrets.NEXT_PUBLIC_DEBUG_AUTH }}" >> .env
-          echo "NEXT_PUBLIC_FEEDBACK_FORM_URL=${{ secrets.NEXT_PUBLIC_FEEDBACK_FORM_URL }}" >> .env
-          echo "NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }}" >> .env
+          echo "NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}" > .env
+          echo "NEXT_PUBLIC_URL=${NEXT_PUBLIC_URL}" >> .env
+          echo "NEXTAUTH_URL=${NEXT_PUBLIC_URL}" >> .env
+          echo "NEXTAUTH_SECRET=${NEXTAUTH_SECRET}" >> .env
+          echo "NEXT_PUBLIC_FEEDBACK_FORM_URL=${NEXT_PUBLIC_FEEDBACK_FORM_URL}" >> .env
+          echo "NEXT_PUBLIC_BUG_REPORT_FORM_URL=${NEXT_PUBLIC_BUG_REPORT_FORM_URL}" >> .env
+          echo "NEXT_PUBLIC_DEBUG_AUTH=${NEXT_PUBLIC_DEBUG_AUTH}" >> .env
           echo "NODE_ENV=production" >> .env
+        env:
+          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+          NEXT_PUBLIC_URL: ${{ secrets.NEXT_PUBLIC_URL }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          NEXT_PUBLIC_FEEDBACK_FORM_URL: ${{ secrets.NEXT_PUBLIC_FEEDBACK_FORM_URL }}
+          NEXT_PUBLIC_BUG_REPORT_FORM_URL: ${{ secrets.NEXT_PUBLIC_BUG_REPORT_FORM_URL }}
+          NEXT_PUBLIC_DEBUG_AUTH: ${{ secrets.NEXT_PUBLIC_DEBUG_AUTH }}
 
       - name: Set up Node.js version
         uses: actions/setup-node@v3
