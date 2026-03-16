@@ -50,6 +50,7 @@ jobs:
       - name: Prepare Standalone Artifact
         run: |
           # 1. O Next standalone precisa que a pasta 'public' esteja na raiz do deploy
+          cp .env .next/standalone/.env
           cp -r public .next/standalone/public
           
           # 2. O Next standalone precisa da pasta 'static' dentro de '.next/static'
