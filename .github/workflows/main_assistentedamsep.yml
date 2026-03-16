@@ -49,21 +49,21 @@ jobs:
       
       - name: Prepare Standalone Artifact
         run: |
-          # 1. O Next standalone precisa que a pasta 'public' esteja na raiz do deploy
+          # 1. Copia o .env, public e static
           cp .env .next/standalone/.env
           cp -r public .next/standalone/public
-          
-          # 2. O Next standalone precisa da pasta 'static' dentro de '.next/static'
-          # CRIAMOS a pasta .next dentro da standalone primeiro
           mkdir -p .next/standalone/.next
           cp -r .next/static .next/standalone/.next/static
           
+          # 2. Entra na pasta e cria um arquivo ZIP com tudo (incluindo pastas ocultas)
+          cd .next/standalone
+          zip -qq -r ../../release.zip .
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          # Enviamos o CONTEÚDO da pasta standalone
-          path: .next/standalone
+          path: release.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -91,6 +91,6 @@ jobs:
         with:
           app-name: 'assistentedamsep'
           slot-name: 'Production'
-          package: .
+          package: release.zip
           startup-command: "node server.js"
           
