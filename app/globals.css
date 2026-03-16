@@ -1,0 +1,920 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 355 95% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 355 95% 45%;
+    --radius: 0.5rem;
+
+    /* SENAI SP Colors */
+    --msep-blue: 355 95% 45%;
+    --msep-blue-light: 0 100% 61%;
+    --msep-orange: 1 75% 24%;
+    --msep-orange-light: 1 55% 35%;
+  }
+
+  .dark {
+    --background: 0 0% 13%;
+    --foreground: 210 40% 98%;
+    --card: 0 0% 13%;
+    --card-foreground: 210 40% 98%;
+    --popover: 0 0% 13%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 355 90% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 0 0% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 0 0% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 355 90% 55%;
+
+    /* SENAI SP Colors */
+    --msep-blue: 355 90% 55%;
+    --msep-blue-light: 0 100% 71%;
+    --msep-orange: 1 75% 34%;
+    --msep-orange-light: 1 55% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-foreground font-medium;
+  }
+  p {
+    @apply text-foreground;
+  }
+  label {
+    @apply text-foreground font-medium;
+  }
+}
+
+/* Material Design specific classes */
+.md-card {
+  @apply rounded-md shadow-md bg-card text-card-foreground overflow-hidden;
+}
+
+.md-card-elevated {
+  @apply shadow-lg;
+}
+
+.md-surface {
+  @apply bg-card text-card-foreground;
+}
+
+.md-button-contained {
+  @apply bg-primary text-primary-foreground rounded-md px-4 py-2 font-medium shadow-sm hover:shadow-md transition-shadow;
+}
+
+.md-button-outlined {
+  @apply border border-primary text-primary rounded-md px-4 py-2 font-medium hover:bg-primary/10 transition-colors;
+}
+
+.md-button-text {
+  @apply text-primary rounded-md px-4 py-2 font-medium hover:bg-primary/10 transition-colors;
+}
+
+.md-fab {
+  @apply rounded-full bg-secondary text-secondary-foreground shadow-lg hover:shadow-xl transition-shadow;
+}
+
+.md-elevation-1 {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.md-elevation-2 {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.md-elevation-3 {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.md-elevation-4 {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.md-drawer-enter {
+  animation: drawerEnter 0.3s ease-out forwards;
+}
+
+.md-drawer-exit {
+  animation: drawerExit 0.3s ease-in forwards;
+}
+
+@keyframes drawerEnter {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawerExit {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.md-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.md-ripple::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.5s, opacity 1s;
+}
+
+.md-ripple:active::after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+}
+
+.md-divider {
+  @apply h-px bg-border my-2;
+}
+
+.md-chip {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary;
+}
+
+.md-chip-deletable {
+  @apply pr-1;
+}
+
+.md-drawer {
+  @apply fixed top-0 left-0 h-full bg-card shadow-lg z-40 overflow-auto;
+}
+
+.md-drawer-overlay {
+  @apply fixed inset-0 bg-black/50 z-30;
+}
+
+.md-text-field {
+  @apply rounded-t-md border-b-2 border-primary/50 focus:border-primary px-3 py-2 outline-none transition-colors;
+}
+
+.md-text-area {
+  @apply rounded-md border-2 border-primary/50 focus:border-primary px-3 py-2 outline-none transition-colors;
+}
+
+/* Material Design expansion panel */
+.md-expansion-panel {
+  @apply rounded-md overflow-hidden transition-all duration-300 ease-in-out;
+}
+
+.md-expansion-panel-header {
+  @apply p-4 cursor-pointer flex items-center justify-between;
+}
+
+.md-expansion-panel-content {
+  @apply overflow-hidden transition-all duration-300 ease-in-out;
+}
+
+/* Material Design bottom sheet */
+.md-bottom-sheet {
+  @apply fixed bottom-0 left-0 right-0 bg-card shadow-lg rounded-t-lg z-40 transition-transform duration-300 ease-in-out;
+}
+
+.md-bottom-sheet-enter {
+  transform: translateY(100%);
+}
+
+.md-bottom-sheet-enter-active {
+  transform: translateY(0);
+}
+
+.md-bottom-sheet-exit {
+  transform: translateY(0);
+}
+
+.md-bottom-sheet-exit-active {
+  transform: translateY(100%);
+}
+
+/* Material Design tabs */
+.md-tabs {
+  @apply flex;
+}
+
+.md-tab {
+  @apply px-4 py-2 font-medium cursor-pointer relative transition-colors;
+}
+
+.md-tab-active::after {
+  content: "";
+  @apply absolute bottom-0 left-0 right-0 h-0.5 bg-primary;
+}
+
+.md-tab-indicator {
+  @apply absolute bottom-0 h-0.5 bg-primary transition-all duration-300 ease-in-out;
+}
+
+/* Material Design badge */
+.md-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background-color: rgb(104, 20, 19); /* #681413 - Laranja SENAI */
+  color: white;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+/* Overlay para o menu sanduíche */
+.menu-overlay {
+  @apply fixed inset-0 bg-black/50 z-30;
+}
+
+/* Animação para o menu sanduíche */
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.3s forwards;
+}
+
+.slide-out {
+  animation: slideOut 0.3s forwards;
+}
+
+/* Estilos para conteúdo Markdown */
+.markdown-content {
+  line-height: 1.6;
+}
+
+.markdown-content pre {
+  background-color: hsl(var(--muted));
+  padding: 1rem;
+  border-radius: 0.375rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.markdown-content code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.875rem;
+}
+
+.markdown-content table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.markdown-content table th,
+.markdown-content table td {
+  border: 1px solid hsl(var(--border));
+  padding: 0.5rem;
+}
+
+.markdown-content table th {
+  background-color: hsl(var(--muted));
+}
+
+.markdown-content blockquote {
+  border-left: 4px solid hsl(var(--muted));
+  padding-left: 1rem;
+  font-style: italic;
+  margin: 1rem 0;
+}
+
+.markdown-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.markdown-content a {
+  color: rgb(227, 6, 19); /* #e30613 - Azul SENAI */
+  text-decoration: underline;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.markdown-content ul {
+  list-style-type: disc;
+}
+
+.markdown-content ol {
+  list-style-type: decimal;
+}
+
+/* Mobile responsive utilities */
+@media (max-width: 640px) {
+  /* Reduzir o tamanho da fonte para text-2xl em dispositivos móveis */
+  .text-2xl {
+    font-size: 1.2rem !important;
+  }
+
+  .md-header-title {
+    font-size: 1rem;
+  }
+
+  .md-header-subtitle {
+    font-size: 0.7rem;
+  }
+
+  .md-button-text-sm {
+    font-size: 0.75rem;
+  }
+
+  .md-icon-sm {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .md-tab-sm {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .md-header-compact {
+    padding: 0.5rem;
+  }
+
+  .md-header-stack {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+/* Add these card title utilities to ensure single-line titles */
+@media (max-width: 640px) {
+  .card-title-single-line {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.875rem;
+  }
+
+  .card-header-compact {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .card-content-compact {
+    padding-top: 0.75rem;
+  }
+}
+
+/* Adicione estas classes no final do arquivo para melhorar a rolagem horizontal */
+@layer utilities {
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  .snap-x-mandatory {
+    scroll-snap-type: x mandatory;
+  }
+
+  .snap-center {
+    scroll-snap-align: center;
+  }
+
+  .bg-gradient-msep {
+    background: linear-gradient(135deg, #e30613 0%, #681413 100%);
+  }
+
+  .text-msep-blue {
+    color: #e30613;
+  }
+
+  .text-msep-orange {
+    color: #681413;
+  }
+}
+
+/* Classes para cores MSEP exatas */
+.bg-msep-blue {
+  background-color: #e30613;
+}
+
+.bg-msep-orange {
+  background-color: #681413;
+}
+
+.text-msep-blue {
+  color: #e30613;
+}
+
+.text-msep-orange {
+  color: #681413;
+}
+
+.border-msep-blue {
+  border-color: #e30613;
+}
+
+.border-msep-orange {
+  border-color: #681413;
+}
+
+/* Classes para gradientes MSEP */
+.bg-gradient-msep-blue {
+  background: linear-gradient(135deg, #e30613 0%, #ff3b3b 100%);
+}
+
+.bg-gradient-msep-orange {
+  background: linear-gradient(135deg, #681413 0%, #8a2a27 100%);
+}
+
+.bg-gradient-msep {
+  background: linear-gradient(135deg, #e30613 0%, #681413 100%);
+}
+
+/* Remover esta seção que causa o erro de dependência circular */
+
+/* Substituir pelas definições diretas abaixo */
+.msep-gradient-bg {
+  background: linear-gradient(135deg, #e30613 0%, #681413 100%);
+}
+
+.msep-gradient-text {
+  background: linear-gradient(135deg, #e30613 0%, #681413 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.msep-blue-gradient-text {
+  background: linear-gradient(135deg, #e30613 0%, #ff3b3b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.msep-orange-gradient-text {
+  background: linear-gradient(135deg, #681413 0%, #8a2a27 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Classes para bordas com gradientes */
+.border-gradient-msep-blue {
+  border-width: 2px;
+  border-style: solid;
+  border-image: linear-gradient(135deg, #e30613 0%, #ff3b3b 100%) 1;
+}
+
+.border-gradient-msep-orange {
+  border-width: 2px;
+  border-style: solid;
+  border-image: linear-gradient(135deg, #681413 0%, #8a2a27 100%) 1;
+}
+
+.border-gradient-msep {
+  border-width: 2px;
+  border-style: solid;
+  border-image: linear-gradient(135deg, #e30613 0%, #681413 100%) 1;
+}
+
+/* Adicionar estas classes melhoradas para ícones e textos */
+.icon-primary {
+  color: #e30613; /* Azul SENAI para ícones no tema claro */
+}
+
+.icon-secondary {
+  color: #681413; /* Laranja SENAI para ícones no tema claro */
+}
+
+.dark .icon-primary {
+  color: #ff3b3b; /* Versão mais clara do azul para ícones no tema escuro */
+}
+
+.dark .icon-secondary {
+  color: #8a2a27; /* Versão mais clara do laranja para ícones no tema escuro */
+}
+
+/* Melhorar classes para badges */
+.badge-primary {
+  background-color: rgba(227, 6, 19, 0.15);
+  color: #e30613;
+  border: 1px solid rgba(227, 6, 19, 0.3);
+}
+
+.badge-secondary {
+  background-color: rgba(104, 20, 19, 0.15);
+  color: #681413;
+  border: 1px solid rgba(104, 20, 19, 0.3);
+}
+
+.dark .badge-primary {
+  background-color: rgba(227, 6, 19, 0.3);
+  color: #ff3b3b;
+  border: 1px solid rgba(227, 6, 19, 0.5);
+}
+
+.dark .badge-secondary {
+  background-color: rgba(104, 20, 19, 0.3);
+  color: #8a2a27;
+  border: 1px solid rgba(104, 20, 19, 0.5);
+}
+
+/* Melhorar classes para botões ghost no tema claro */
+.btn-ghost-primary {
+  color: #e30613;
+}
+
+.btn-ghost-primary:hover {
+  background-color: rgba(227, 6, 19, 0.1);
+}
+
+.btn-ghost-secondary {
+  color: #681413;
+}
+
+.btn-ghost-secondary:hover {
+  background-color: rgba(104, 20, 19, 0.1);
+}
+
+/* Melhorar classes para links */
+a.text-primary {
+  color: #e30613;
+  text-decoration: none;
+}
+
+a.text-primary:hover {
+  text-decoration: underline;
+}
+
+a.text-secondary {
+  color: #681413;
+  text-decoration: none;
+}
+
+a.text-secondary:hover {
+  text-decoration: underline;
+}
+
+/* Melhorar classes para textos com gradientes */
+.text-gradient-msep-blue {
+  background: linear-gradient(135deg, #e30613 0%, #ff3b3b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-msep-orange {
+  background: linear-gradient(135deg, #681413 0%, #8a2a27 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-msep {
+  background: linear-gradient(135deg, #e30613 0%, #681413 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Novas classes para cabeçalhos com gradientes */
+.header-gradient-blue {
+  background: linear-gradient(135deg, rgba(227, 6, 19, 0.15) 0%, rgba(255, 59, 59, 0.05) 100%);
+  border-bottom: 2px solid #e30613;
+}
+
+.header-gradient-orange {
+  background: linear-gradient(135deg, rgba(104, 20, 19, 0.15) 0%, rgba(138, 42, 39, 0.05) 100%);
+  border-bottom: 2px solid #681413;
+}
+
+.header-gradient-msep {
+  background: linear-gradient(135deg, rgba(227, 6, 19, 0.1) 0%, rgba(104, 20, 19, 0.05) 100%);
+  border-bottom: 1px solid;
+  border-image: linear-gradient(90deg, #e30613, #681413) 1;
+}
+
+/* Novas classes para cards com gradientes */
+.card-gradient-blue {
+  background: linear-gradient(135deg, white 0%, rgba(227, 6, 19, 0.05) 100%);
+  border: 1px solid rgba(227, 6, 19, 0.2);
+}
+
+.card-gradient-orange {
+  background: linear-gradient(135deg, white 0%, rgba(104, 20, 19, 0.05) 100%);
+  border: 1px solid rgba(104, 20, 19, 0.2);
+}
+
+.card-gradient-msep {
+  background: linear-gradient(135deg, white 0%, rgba(227, 6, 19, 0.03) 50%, rgba(104, 20, 19, 0.03) 100%);
+  border: 1px solid;
+  border-image: linear-gradient(135deg, rgba(227, 6, 19, 0.3), rgba(104, 20, 19, 0.3)) 1;
+}
+
+/* Versões escuras dos gradientes para cards */
+.dark .card-gradient-blue {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(227, 6, 19, 0.2) 100%);
+  border: 1px solid rgba(255, 59, 59, 0.3);
+}
+
+.dark .card-gradient-orange {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(104, 20, 19, 0.2) 100%);
+  border: 1px solid rgba(138, 42, 39, 0.3);
+}
+
+.dark .card-gradient-msep {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(227, 6, 19, 0.1) 50%, rgba(104, 20, 19, 0.1) 100%);
+  border: 1px solid;
+  border-image: linear-gradient(135deg, rgba(255, 59, 59, 0.4), rgba(138, 42, 39, 0.4)) 1;
+}
+
+/* Botões com gradientes */
+.btn-gradient-blue {
+  background: linear-gradient(135deg, #e30613 0%, #ff3b3b 100%);
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient-blue:hover {
+  background: linear-gradient(135deg, #c00510 0%, #e83535 100%);
+  box-shadow: 0 4px 8px rgba(227, 6, 19, 0.3);
+}
+
+.btn-gradient-orange {
+  background: linear-gradient(135deg, #681413 0%, #8a2a27 100%);
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient-orange:hover {
+  background: linear-gradient(135deg, #5a100f 0%, #7a2321 100%);
+  box-shadow: 0 4px 8px rgba(104, 20, 19, 0.3);
+}
+
+.btn-gradient-msep {
+  background: linear-gradient(135deg, #e30613 0%, #681413 100%);
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient-msep:hover {
+  background: linear-gradient(135deg, #c00510 0%, #5a100f 100%);
+  box-shadow: 0 4px 8px rgba(227, 6, 19, 0.2);
+}
+
+/* Animações para elementos com gradientes */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-animate {
+  background-size: 200% 200%;
+  animation: gradientShift 5s ease infinite;
+}
+
+/* Melhorias para elementos de navegação */
+.nav-item-active {
+  background: linear-gradient(90deg, rgba(227, 6, 19, 0.15) 0%, rgba(227, 6, 19, 0.05) 100%);
+  border-left: 3px solid #e30613;
+  color: #e30613;
+  font-weight: 500;
+}
+
+.nav-item-active-orange {
+  background: linear-gradient(90deg, rgba(104, 20, 19, 0.15) 0%, rgba(104, 20, 19, 0.05) 100%);
+  border-left: 3px solid #681413;
+  color: #681413;
+  font-weight: 500;
+}
+
+/* Melhorias para tabs */
+.tab-gradient-active {
+  background: linear-gradient(180deg, rgba(227, 6, 19, 0.1) 0%, rgba(227, 6, 19, 0.02) 100%);
+  border-bottom: 2px solid #e30613;
+  color: #e30613;
+  font-weight: 500;
+}
+
+.tab-gradient-active-orange {
+  background: linear-gradient(180deg, rgba(104, 20, 19, 0.1) 0%, rgba(104, 20, 19, 0.02) 100%);
+  border-bottom: 2px solid #681413;
+  color: #681413;
+  font-weight: 500;
+}
+
+/* Melhorias para textos e ícones */
+.text-strong-primary {
+  color: #e30613;
+  font-weight: 600;
+}
+
+.text-strong-secondary {
+  color: #681413;
+  font-weight: 600;
+}
+
+.icon-gradient-primary {
+  color: #e30613;
+  filter: drop-shadow(0 1px 1px rgba(227, 6, 19, 0.3));
+}
+
+.icon-gradient-secondary {
+  color: #681413;
+  filter: drop-shadow(0 1px 1px rgba(104, 20, 19, 0.3));
+}
+
+/* Melhorias para inputs e controles */
+.input-focus-primary {
+  border: 1px solid rgba(227, 6, 19, 0.3);
+  transition: all 0.2s ease;
+}
+
+.input-focus-primary:focus {
+  border-color: #e30613;
+  box-shadow: 0 0 0 2px rgba(227, 6, 19, 0.2);
+}
+
+.input-focus-secondary {
+  border: 1px solid rgba(104, 20, 19, 0.3);
+  transition: all 0.2s ease;
+}
+
+.input-focus-secondary:focus {
+  border-color: #681413;
+  box-shadow: 0 0 0 2px rgba(104, 20, 19, 0.2);
+}
+
+/* Melhorias para seleção de texto */
+::selection {
+  background-color: rgba(227, 6, 19, 0.2);
+  color: #e30613;
+}
+
+/* Melhorias para scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(227, 6, 19, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #e30613, #ff3b3b);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #c00510, #e83535);
+}
+
+.scrollbar-thumb-darker {
+  background-color: rgba(192, 5, 16, 1)
+}
+
+.scrollbar-thumb-darker:hover {
+  background-color: rgba(192, 5, 16, 1)
+}
+
+/* Melhorias para tooltips */
+.tooltip-msep {
+  background: linear-gradient(135deg, #e30613 0%, #ff3b3b 100%);
+  color: white;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 0.875rem;
+  box-shadow: 0 2px 8px rgba(227, 6, 19, 0.3);
+}
+
+.tooltip-msep-orange {
+  background: linear-gradient(135deg, #681413 0%, #8a2a27 100%);
+  color: white;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 0.875rem;
+  box-shadow: 0 2px 8px rgba(104, 20, 19, 0.3);
+}
+
+/* Melhorias para notificações e alertas */
+.alert-msep-blue {
+  background: linear-gradient(135deg, rgba(227, 6, 19, 0.1) 0%, rgba(255, 59, 59, 0.05) 100%);
+  border-left: 4px solid #e30613;
+  color: #e30613;
+}
+
+.alert-msep-orange {
+  background: linear-gradient(135deg, rgba(104, 20, 19, 0.1) 0%, rgba(138, 42, 39, 0.05) 100%);
+  border-left: 4px solid #681413;
+  color: #681413;
+}
+
+/* Melhorias para placeholders */
+::placeholder {
+  color: rgba(227, 6, 19, 0.5);
+  opacity: 0.7;
+}
+
+/* TipTap Editor Styles */
+.prose ul {
+  list-style: disc;
+  margin-left: 1.5rem;
+}
+
+.prose ol {
+  list-style: decimal;
+  margin-left: 1.5rem;
+}
